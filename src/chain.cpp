@@ -20,7 +20,7 @@ void Chain::addBlock(Block &b) {
     chain.push_back(b);
 }
 
-bool Chain::validateChain(){
+bool Chain::validateChain() {
     for(std::list<Block>::iterator itr = chain.begin(); itr!=chain.end(); ++itr){
         if(itr->getHash() != itr->calculateHash(itr->getTimestamp(), itr->getData(), itr->getPrevHash())){
             return false;
