@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS= -g -Wall -Wextra -std=c++11 -Wno-sign-compare -lboost_system -lcrypto -lssl -lcpprest
+CFLAGS= -g -Wall -Wextra -std=c++11 -Wno-sign-compare 
 
 csrc = $(wildcard *.cpp) \
        $(wildcard src/*.cpp) \
