@@ -31,3 +31,6 @@
 *.exe
 *.out
 *.app
+
+*.out.dSYM
+*.dSYM
