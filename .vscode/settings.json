@@ -1,0 +1,21 @@
+{
+    "files.associations": {
+        "memory": "cpp",
+        "type_traits": "cpp",
+        "string": "cpp",
+        "iosfwd": "cpp",
+        "__config": "cpp",
+        "__nullptr": "cpp",
+        "exception": "cpp",
+        "initializer_list": "cpp",
+        "new": "cpp",
+        "stdexcept": "cpp",
+        "typeinfo": "cpp",
+        "string_view": "cpp",
+        "list": "cpp",
+        "algorithm": "cpp",
+        "functional": "cpp",
+        "*.ipp": "cpp"
+    },
+    "editor.detectIndentation": false,
+}

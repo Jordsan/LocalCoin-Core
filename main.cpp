@@ -11,5 +11,9 @@
 using namespace std;
 
 int main(int argc, char **argv) {
-    cout << "test" << endl;
+    cout << "Starting Server" << endl;
+
+    TransactionController server;
+    server.setEndpoint("http://host_auto_ip4:4200/api");
+
 }
