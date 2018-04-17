@@ -3,10 +3,9 @@
 
 #include <string>
 #include <cpprest/http_listener.h>
-#include <pplx/pplxtasks.h>
-#include <cpprest/http_msg.h>
+#include <cpprest/json.h>
 
-#include "networkUtils.hpp"
+//#include "networkUtils.hpp"
 
 using namespace web;
 using namespace http;
@@ -25,12 +24,15 @@ class TransactionController {
         void handlePost(http_request request);
         void handlePatch(http_request request);
         void handleDelete(http_request request);
-        void initRestOpHandlers();
+
+        void initHandlers();
 
         void setEndpoint(const std::string & value);
-        string endpoint() const;
-        task<void> accept();
-        task<void> shutdown();
+        std::string getEndpoint() const;
+
+        void display_json(json::value const& json, utility::string_t const& prefix);
+        pplx::task<void> openServer();
+        pplx::task<void> closeServer();
 
         vector<utility::string_t> requestPath(const http_request & request);
 };

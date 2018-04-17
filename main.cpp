@@ -9,11 +9,32 @@
 #include <iostream>
 
 using namespace std;
+using namespace web;
+using namespace web::http;
+using namespace web::http::experimental::listener;
 
-int main(int argc, char **argv) {
+int main() {
     cout << "Starting Server" << endl;
 
     TransactionController server;
-    server.setEndpoint("http://host_auto_ip4:4200/api");
+    server.setEndpoint("http://0.0.0.0:4200/api");
+    server.initHandlers();
 
+    try {
+        server.openServer().wait();
+        cout << "Server listening at: " << server.getEndpoint() << endl;
+
+        // figure out how to keep server running without this?
+        while (true);
+    }
+    catch(exception &e) {
+        cout << "--- ERROR DETECTED ---" << endl;
+        cout << e.what() << endl;
+    }
+
+    
+    // this doesn't get reached bc of the while(true)
+    server.closeServer().wait();
+
+    return 0;
 }
