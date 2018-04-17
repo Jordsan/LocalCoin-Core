@@ -74,22 +74,29 @@ void TransactionController::handleGet(http_request request) {
 void TransactionController::handlePost(http_request request) {
     cout << ("received POST request") << endl;
 
-    // auto path = requestPath(request);
-    // if (!path.empty()) {
-    //     cout << "Path vals: " << endl;
-    //     cout << utility::conversions::to_utf8string(path[0]) << "/" << utility::conversions::to_utf8string(path[1]) << endl;
-    //     if (path[0] == "api" && path[1] == "chain") {
-    //         auto response = json::value::object();
-    //         response["chain"] = json::value::string("insert chain here");
-    //         request.reply(status_codes::OK, response);
-    //     }
-    //     else {
-    //         request.reply(status_codes::NotFound);
-    //     }   
-    // }
-    // else {
-    //     request.reply(status_codes::NotFound);
-    // }
+    web::json::value json = request.extract_json().get();
+
+    for(auto iter = json.as_object().cbegin(); iter != json.as_object().cend(); ++iter) {
+        const utility::string_t &str = iter->first;
+        const json::value &v = iter->second;
+
+        std::cout << "\""<< utility::conversions::to_utf8string(str) << "\" : " << v.serialize() << endl;
+    }
+
+    auto path = requestPath(request);
+    if (!path.empty()) {
+        if (path[0] == "api" && path[1] == "chain") {
+            auto response = json::value::object();
+            response["chain"] = json::value::string("post a transaction here");
+            request.reply(status_codes::OK, response);
+        }
+        else {
+            request.reply(status_codes::NotFound);
+        }   
+    }
+    else {
+        request.reply(status_codes::NotFound);
+    }
 
     request.reply(status_codes::NotFound);
 }
