@@ -44,31 +44,52 @@ void TransactionController::setEndpoint(const string& value) {
     }
 
 vector<utility::string_t> TransactionController::requestPath(const http_request &request) {
-    auto relativePath = uri::decode(request.relative_uri().path());
-    return uri::split_path(relativePath);
+    return uri::split_path(request.request_uri().path());
 }
 
 void TransactionController::handleGet(http_request request) {
-    // auto path = requestPath(request);
-    // if (!path.empty()) {
-    //     if (path[0] == "service" && path[1] == "test") {
-    //         auto response = json::value::object();
-    //         response["version"] = json::value::string("0.1.1");
-    //         response["status"] = json::value::string("ready !");
-    //         request.reply(status_codes::OK, response);
-    //     }
-    // }
-    // request.reply(status_codes::NotFound);
-    
     cout << ("received GET request") << endl;
 
-    auto response = json::value::object();
-    response["test"] = json::value::string("test response!");
-
-    request.reply(status_codes::OK, response);
-
+    auto path = requestPath(request);
+    if (!path.empty()) {
+        if (path[0] == "api" && path[1] == "chain") {
+            auto response = json::value::object();
+            response["chain"] = json::value::string("insert chain here");
+            request.reply(status_codes::OK, response);
+        }
+        else if (path[0] == "api" && path[1] == "transaction") {
+            auto response = json::value::object();
+            response["transaction"] = json::value::string("insert transaction with inputted id here");
+            request.reply(status_codes::OK, response);
+        }
+        else {
+            request.reply(status_codes::NotFound);
+        }   
+    }
+    else {
+        request.reply(status_codes::NotFound);
+    }
 }
 
 void TransactionController::handlePost(http_request request) {
     cout << ("received POST request") << endl;
+
+    // auto path = requestPath(request);
+    // if (!path.empty()) {
+    //     cout << "Path vals: " << endl;
+    //     cout << utility::conversions::to_utf8string(path[0]) << "/" << utility::conversions::to_utf8string(path[1]) << endl;
+    //     if (path[0] == "api" && path[1] == "chain") {
+    //         auto response = json::value::object();
+    //         response["chain"] = json::value::string("insert chain here");
+    //         request.reply(status_codes::OK, response);
+    //     }
+    //     else {
+    //         request.reply(status_codes::NotFound);
+    //     }   
+    // }
+    // else {
+    //     request.reply(status_codes::NotFound);
+    // }
+
+    request.reply(status_codes::NotFound);
 }

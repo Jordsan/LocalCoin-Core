@@ -12,4 +12,4 @@ obj = $(csrc:.c=.o)
 
 
 localcoin: $(obj)
-	$(CC) $^ $(CFLAGS) 
+	$(CC) $^ $(CFLAGS) -o lc.out
