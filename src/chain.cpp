@@ -1,8 +1,5 @@
 #include "../include/chain.hpp"
 
-#include <iostream>
-using namespace std;
-
 Chain::Chain() {
     Block b(0, "beginning of time", "genesis Block");
 

@@ -84,7 +84,6 @@ void TransactionController::handlePost(http_request request) {
                 amount = json.at(U("amount")).as_double();
             }
             catch (exception &e) {
-                cout << "invalid obj" << endl;
                 request.reply(status_codes::UnprocessableEntity);
                 return;
             }

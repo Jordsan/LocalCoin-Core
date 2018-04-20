@@ -10,3 +10,7 @@ void WalletService::setData(map<string, Wallet> db) {
 Wallet WalletService::findWallet(string s) {
     return mockDB.at(s);
 }
+
+map<string, Wallet>& WalletService::getDB() {
+    return mockDB;
+}

@@ -17,6 +17,7 @@ class WalletService {
         
         Wallet findWallet(string s);
         void setData(map<string, Wallet> db);
+        map<string, Wallet>& getDB();
 };
 
 #endif

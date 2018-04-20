@@ -1,7 +1,5 @@
 #include "../include/transactionService.hpp"
 
-#include <iostream>
-
 TransactionService::TransactionService() {
     map<string, Wallet> mockDB;
 
@@ -16,7 +14,12 @@ TransactionService::TransactionService() {
 }
 
 bool TransactionService::validateTransaction(Transaction t, Chain &c) {
-    // add in validation
+    // TODO: add in validation of chain?
+
+    if (walletService.getDB().count(t.getFrom()) == 0 || walletService.getDB().count(t.getTo()) == 0) {
+        return false;
+    }
+
     Wallet to = walletService.findWallet(t.getTo());
     Wallet from = walletService.findWallet(t.getFrom());
 
