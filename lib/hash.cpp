@@ -121,7 +121,7 @@ string SHA256(string plaintext)
 	string message = "";
 	// bool testing = 0;
 	message = plaintext;
-	cout << message << endl;
+	// cout << message << endl;
 
 	
 	// abc in decimal is 97 98 99
@@ -142,8 +142,8 @@ string SHA256(string plaintext)
 	// This is what does the actual hashing.
 	string hash = compute_hash(block);
 	
-	cout << "SHA256" << endl;
-	cout << hash << endl;
+	// cout << "SHA256" << endl;
+	// cout << hash << endl;
 	return hash;
 }
 

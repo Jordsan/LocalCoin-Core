@@ -1,20 +1,21 @@
 #include "../include/transaction.hpp"
 
+
 Transaction::Transaction() {
     
 }
 
-Transaction::Transaction(Wallet to, Wallet from, double amnt) {
+Transaction::Transaction(std::string to, std::string from, double amnt) {
     toAddress = to;
     fromAddress = from;
     amount = amnt;
 }
 
-Wallet Transaction::getTo() {
+std::string Transaction::getTo() {
     return toAddress;
 }
 
-Wallet Transaction::getFrom() {
+std::string Transaction::getFrom() {
     return fromAddress;
 }
 

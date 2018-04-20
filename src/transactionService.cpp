@@ -1,28 +1,38 @@
 #include "../include/transactionService.hpp"
 
-TransactionService::TransactionService() {
-    
-}
+#include <iostream>
 
-Transaction TransactionService::createTransaction(Wallet to, Wallet from, double amnt) {
-    return Transaction(to, from, amnt);
+TransactionService::TransactionService() {
+    map<string, Wallet> mockDB;
+
+    Wallet w1("test1", 100);
+    Wallet w2("test2", 100);
+
+    mockDB[w1.getPublicKey()] = w1;
+    mockDB[w2.getPublicKey()] = w2;
+
+
+    walletService.setData(mockDB);
 }
 
 bool TransactionService::validateTransaction(Transaction t, Chain &c) {
     // add in validation
+    Wallet to = walletService.findWallet(t.getTo());
+    Wallet from = walletService.findWallet(t.getFrom());
 
-    if (t.getAmount() > t.getFrom().getBalance()){
+    if (from.getBalance() > t.getAmount()) { 
         return true;
     } 
     return false;
 }
 
 void TransactionService::sendTransaction(Transaction t, Chain &c) {
-    if (validateTransaction(t, c)) {
-        t.getFrom().send(t.getAmount());
-        t.getTo().receive(t.getAmount());
+    Wallet to = walletService.findWallet(t.getTo());
+    Wallet from = walletService.findWallet(t.getFrom());
 
-        Block b(0, "now", t.getFrom().getPublicKey() + ":" + t.getTo().getPublicKey() + ":" + std::to_string(t.getAmount()));
-        c.addBlock(b);
-    }
+    from.send(t.getAmount());
+    to.receive(t.getAmount());
+
+    Block b(0, "now", from.getPublicKey() + ":" + to.getPublicKey() + ":" + std::to_string(t.getAmount()));
+    c.addBlock(b);
 }

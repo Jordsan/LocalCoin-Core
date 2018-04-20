@@ -6,6 +6,10 @@ Wallet::Wallet() {
     publicKey = "asdf123";
 }
 
+Wallet::Wallet(std::string s, double amnt) {
+    publicKey = s;
+    balance = amnt;
+}
 
 std::string Wallet::getPublicKey() {
     return publicKey;

@@ -1,20 +1,20 @@
 #ifndef TRANSACTION_H_ 
 #define TRANSACTION_H_
 
-#include "wallet.hpp"
+#include <string>
 
 class Transaction {
     private:
-        Wallet toAddress;
-        Wallet fromAddress;
+        std::string toAddress;
+        std::string fromAddress;
         double amount;
 
     public:
         Transaction();
-        Transaction(Wallet to, Wallet from, double amnt);
+        Transaction(std::string to, std::string from, double amnt);
 
-        Wallet getTo();
-        Wallet getFrom();
+        std::string getTo();
+        std::string getFrom();
         double getAmount();
 };
 

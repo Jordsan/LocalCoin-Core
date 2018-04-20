@@ -11,11 +11,11 @@ class Chain {
         std::list<Block> chain;
     public:
         Chain();
-        Chain(Block b);
 
         Block getLatest();
         void addBlock(Block &b);
         bool validateChain();
+        std::list<Block> getChain();
 };
 
 #endif

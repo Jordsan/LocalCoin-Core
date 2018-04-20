@@ -5,6 +5,9 @@
 #include <cpprest/http_listener.h>
 #include <cpprest/json.h>
 
+#include "../include/transactionService.hpp"
+#include "../include/chainService.hpp"
+
 //#include "networkUtils.hpp"
 
 using namespace web;
@@ -14,6 +17,9 @@ using namespace std;
 using namespace pplx;
 
 class TransactionController {
+    private:
+        TransactionService transactionService;
+        ChainService chainService;
     protected:
         http_listener listener;
     public:
@@ -30,7 +36,6 @@ class TransactionController {
         void setEndpoint(const std::string & value);
         std::string getEndpoint() const;
 
-        void display_json(json::value const& json, utility::string_t const& prefix);
         pplx::task<void> openServer();
         pplx::task<void> closeServer();
 

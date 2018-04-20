@@ -6,15 +6,20 @@
 #include "block.hpp"
 #include "chain.hpp"
 
+#include "../include/walletService.hpp"
+#include "../include/chainService.hpp"
+
+
 class TransactionService {
     private:
-        
+        WalletService walletService;
+        ChainService chainService;
     public:
         TransactionService();
         
-        Transaction createTransaction(Wallet to, Wallet from, double amnt);
         bool validateTransaction(Transaction t, Chain &c);
         void sendTransaction(Transaction t, Chain &c);
+
 };
 
 #endif

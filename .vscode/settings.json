@@ -31,7 +31,14 @@
         "system_error": "cpp",
         "tuple": "cpp",
         "vector": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "slist": "cpp",
+        "cstddef": "cpp",
+        "cctype": "cpp",
+        "cstdlib": "cpp",
+        "ctime": "cpp",
+        "cwctype": "cpp",
+        "iostream": "cpp"
     },
     "editor.detectIndentation": false,
 }

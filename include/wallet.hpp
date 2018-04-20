@@ -9,6 +9,7 @@ class Wallet {
         double balance;
     public:
         Wallet();
+        Wallet(std::string s, double amnt);
 
         std::string getPublicKey();
 

@@ -39,5 +39,6 @@ std::string Block::getData() {
 }
 
 std::string Block::calculateHash(std::string ts, std::string d, std::string ph) {
+    // return ts + ":" + d + ":" + ph;
     return SHA256(ts + d + ph);
 }
