@@ -32,12 +32,26 @@ void TransactionController::handleGet(http_request request) {
 
     auto path = requestPath(request);
     if (!path.empty()) {
-        if (path[0] == "api" && path[1] == "chain") {
+        if (path[0] == "api" && path[1] == "chain" && path.size() == 2) {
+            Chain c = chainService.getChainObj();
+
             auto response = json::value::object();
             response["chain"] = json::value::string("insert chain here");
             request.reply(status_codes::OK, response);
         }
-        else if (path[0] == "api" && path[1] == "transaction") {
+        else if (path[0] == "api" && path[1] == "chain" && path[2] == "latest" && path.size() == 3) {
+            Chain c = chainService.getChainObj();
+            Block b = c.getLatest();
+
+            auto response = json::value::object();
+            response["index"] = json::value::number(b.getIndex());
+            response["timestamp"] = json::value::string(U(b.getTimestamp()));
+            response["data"] = json::value::string(U(b.getData()));
+            response["hash"] = json::value::string(U(b.getHash()));
+            response["prevHash"] = json::value::string(U(b.getPrevHash()));
+            request.reply(status_codes::OK, response);
+        }
+        else if (path[0] == "api" && path[1] == "transaction" && path.size() == 2) {
             auto response = json::value::object();
             response["transaction"] = json::value::string("insert transaction with inputted id here");
             request.reply(status_codes::OK, response);
@@ -58,7 +72,7 @@ void TransactionController::handlePost(http_request request) {
 
     auto path = requestPath(request);
     if (!path.empty()) {
-        if (path[0] == "api" && path[1] == "chain") {
+        if (path[0] == "api" && path[1] == "chain" && path.size() == 2) {
             string to;
             string from;
             double amount;

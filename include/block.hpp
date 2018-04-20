@@ -15,6 +15,7 @@ class Block {
         Block();
         Block(int index, std::string timestamp, std::string data);
 
+        int getIndex();
         std::string getHash();
         void setHash(std::string h);
         std::string getPrevHash();

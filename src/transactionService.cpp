@@ -33,6 +33,6 @@ void TransactionService::sendTransaction(Transaction t, Chain &c) {
     from.send(t.getAmount());
     to.receive(t.getAmount());
 
-    Block b(0, "now", from.getPublicKey() + ":" + to.getPublicKey() + ":" + std::to_string(t.getAmount()));
+    Block b(chainService.getChainObj().getChain().size(), "now", from.getPublicKey() + ":" + to.getPublicKey() + ":" + std::to_string(t.getAmount()));
     c.addBlock(b);
 }

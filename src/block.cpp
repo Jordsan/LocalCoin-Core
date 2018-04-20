@@ -14,6 +14,10 @@ Block::Block(int index, std::string timestamp, std::string data) {
     
 }
 
+int Block::getIndex() {
+    return index;
+}
+
 std::string Block::getHash() {
     return this->hash;
 }
