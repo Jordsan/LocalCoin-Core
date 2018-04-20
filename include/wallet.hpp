@@ -14,6 +14,7 @@ class Wallet {
         std::string getPublicKey();
 
         double getBalance();
+
         void send(double amount);
         void receive(double amount);
 };

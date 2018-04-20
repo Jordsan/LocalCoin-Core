@@ -13,7 +13,7 @@ Block Chain::getLatest() {
     return chain.back();
 }
 
-std::list<Block> Chain::getChain() {
+std::list<Block>& Chain::getChain() {
     return chain;
 }
 

@@ -15,9 +15,12 @@ class WalletService {
     public:
         WalletService();
         
-        Wallet findWallet(string s);
-        void setData(map<string, Wallet> db);
+        void setData(map<string, Wallet> &db);
         map<string, Wallet>& getDB();
+
+        Wallet& findWallet(string s);
+
+        void doTransaction(Wallet &to, Wallet &from, double amnt);
 };
 
 #endif

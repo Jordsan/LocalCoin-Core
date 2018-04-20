@@ -15,7 +15,7 @@ class Chain {
         Block getLatest();
         void addBlock(Block &b);
         bool validateChain();
-        std::list<Block> getChain();
+        std::list<Block>& getChain();
 };
 
 #endif

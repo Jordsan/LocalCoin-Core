@@ -23,7 +23,7 @@ bool TransactionService::validateTransaction(Transaction t, Chain &c) {
     Wallet to = walletService.findWallet(t.getTo());
     Wallet from = walletService.findWallet(t.getFrom());
 
-    if (from.getBalance() > t.getAmount()) { 
+    if (from.getBalance() >= t.getAmount()) { 
         return true;
     } 
     return false;
@@ -33,8 +33,10 @@ void TransactionService::sendTransaction(Transaction t, Chain &c) {
     Wallet to = walletService.findWallet(t.getTo());
     Wallet from = walletService.findWallet(t.getFrom());
 
-    from.send(t.getAmount());
-    to.receive(t.getAmount());
+    walletService.doTransaction(walletService.findWallet(t.getTo()), walletService.findWallet(t.getFrom()), t.getAmount());
+
+    // walletService.findWallet(t.getFrom()).send(t.getAmount());
+    // walletService.findWallet(t.getTo()).receive(t.getAmount());
 
     Block b(chainService.getChainObj().getChain().size(), "now", from.getPublicKey() + ":" + to.getPublicKey() + ":" + std::to_string(t.getAmount()));
     c.addBlock(b);
