@@ -23,7 +23,7 @@ class TransactionController {
     protected:
         http_listener listener;
     public:
-        TransactionController() {};
+        TransactionController();
         ~TransactionController() {};
         void handleGet(http_request request);
         void handlePut(http_request request);

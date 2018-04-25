@@ -1,5 +1,8 @@
 #include "../include/transactionController.hpp"
 
+TransactionController::TransactionController() {
+    
+}
 
 pplx::task<void> TransactionController::openServer() {
     return listener.open();
@@ -56,6 +59,17 @@ void TransactionController::handleGet(http_request request) {
             response["transaction"] = json::value::string("insert transaction with inputted id here");
             request.reply(status_codes::OK, response);
         }
+        else if (path[0] == "api" && path[1] == "wallet"  && path.size() == 3) {
+            try {
+                auto response = json::value::object();
+                response["balance"] = json::value::number(transactionService.getWalletService().findWallet(path[2]).getBalance());
+                request.reply(status_codes::OK, response);
+            }
+            catch (exception &e){
+                cout << "wallet balance get failed" << endl;
+                request.reply(status_codes::NotFound);
+            }
+        }
         else {
             request.reply(status_codes::NotFound);
         }   
@@ -92,11 +106,17 @@ void TransactionController::handlePost(http_request request) {
 
             if (transactionService.validateTransaction(t, chainService.getChainObj())) {
                 transactionService.sendTransaction(t, chainService.getChainObj());
-                response["status"] = json::value::string("transaction created");
+                response["status"] = json::value::string("success");
+
+                cout << "success" << endl;
+
                 request.reply(status_codes::OK, response);
             }
             else {
-                request.reply(status_codes::UnprocessableEntity);
+                response["status"] = json::value::string("fail");
+                cout << "failed" << endl;
+
+                request.reply(status_codes::UnprocessableEntity, response);
             }
         }
         else {

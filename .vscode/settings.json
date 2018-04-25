@@ -38,7 +38,12 @@
         "cstdlib": "cpp",
         "ctime": "cpp",
         "cwctype": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "__tree": "cpp",
+        "map": "cpp",
+        "ostream": "cpp",
+        "array": "cpp",
+        "unordered_map": "cpp"
     },
     "editor.detectIndentation": false,
 }

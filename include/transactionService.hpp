@@ -20,6 +20,8 @@ class TransactionService {
         bool validateTransaction(Transaction t, Chain &c);
         void sendTransaction(Transaction t, Chain &c);
 
+        WalletService& getWalletService();
+
 };
 
 #endif

@@ -3,7 +3,7 @@
 Wallet::Wallet() {
     // generate public key here
     balance = 0;
-    publicKey = "asdf123";
+    publicKey = "default";
 }
 
 Wallet::Wallet(std::string s, double amnt) {
